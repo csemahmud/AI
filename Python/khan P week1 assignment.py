@@ -36,25 +36,62 @@ print(fv)     # print FV print(FV)
 # 3) define numeric list data or vector as d
 d=[1,2,3,4,5,6,7,8,9,10]  # define list data type
 # calculate sum of data d as sum(d)
-T = sum(d)     # define sum of d as T
+T = np.sum(d)     # define sum of d as T
 print(T)     # print T
+T
 # caluculate mean (average) of d as np.mean(d)
 ave =  np.mean(d)    # define ave for mean value 
 print(ave)     # print ave
 # check true or false for the following operations
-         # if ave is equal to 5.0
-         # if ave is  larger than 3
-         # if ave is larger than 5
-         # if ave is larger than 7
-         # if ave is smaller than 9
+if ave==5.0:
+    print("True")
+else :
+    print("False")        # if ave is equal to 5.0
+if ave>3:
+    print("True")
+else :
+    print("False")      # if ave is  larger than 3
+if ave>5:
+    print("True")
+else :
+    print("False")         # if ave is larger than 5
+if ave>7:
+    print("True")
+else :
+    print("False")         # if ave is larger than 7
+if ave<9:
+    print("True")
+else :
+    print("False")         # if ave is smaller than 9
 # 4) define character number list data as e
 e=['1','2','3']  # character number data
 # try to add each element and see what happened
-         # add element[0], e[1], e[2]
+T = np.char.add(e[0], np.char.add(e[1], e[2]))         # add element[0], e[1], e[2]
+print(T)
+# try to add each element and see what happened
+# another way
+strsum = "0"
+sum = 0
+for ch in e:
+    if ch.isdigit():
+        strsum += ch
+        sum += int(ch)
+print(int(strsum))
+print(sum)
 # 5) define tuple data as
 f=(1,2,3,4)  # tuple data type and elements are immutable
 # try to change element f[0] of tuple data to 5
          # try to change 1 to 5
+#f[0] = 5 #TypeError: 'tuple' object does not support item assignment
+print(f)
+print(f[0])
+ar = []
+for num in f:
+    ar.append(num)
+ar[0] = 5
+f = ar[0], ar[1], ar[2], ar[3]
+print(f)
+print(f[0])
 #         
 # additional self-study part
 # 6) examples for string, matrix, array, data frames
