@@ -15,6 +15,9 @@ PYR101 week 1 task assignment
 # library set-up
 import numpy as np
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split      # split data into train and test data
 # 1) let's try to create a simple math formula
 
 # define variables a=5, b=3 for formula y=a+b
