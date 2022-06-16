@@ -59,27 +59,25 @@ plt.show()
 
 # 6. Analyze Tenure data
 ax = sns.boxplot(data=Glenco_data1)
+plt.show()
+
+ax = sns.boxplot(y="Tenure",data=Glenco_data1, linewidth=2.5)
 # a) check Tenure variance for all using box plot
 plt.show()
 
-ax = sns.boxplot(x="ID", y="Age",data=Glenco_data1, linewidth=2.5)
-# a) check Tenure variance for all comparing ID vs Age using box plot
-plt.show()
-
-ax = sns.boxplot(x="ID", y="Age", hue="Gender",data=Glenco_data1, linewidth=2.5)
+ax = sns.boxplot(y="Tenure", x="Gender",data=Glenco_data1, linewidth=2.5)
 # b) compare Tenure variance by Gender using box plot
 plt.show()
 
 # 7. Analyze Tenure and Hourly rate correlation
 sns.lmplot(data=Glenco_data1)
+plt.show()
+
+sns.lmplot(x="Tenure", y="HourlyRate", data=Glenco_data1)
 # a) check correlation for all using scatter plot with regression line
 plt.show()
 
-sns.lmplot(x="ID", y="Age", data=Glenco_data1)
-# a) check correlation for all comparing ID vs Age using scatter plot with regression line
-plt.show()
-
-sns.lmplot(x="ID", y="Age", hue="Gender", data=Glenco_data1)
+sns.lmplot(x="Tenure", y="HourlyRate", hue="Gender", data=Glenco_data1)
 # b) compare correlation by Gender using scatter plot with regression line
 plt.show()
 
