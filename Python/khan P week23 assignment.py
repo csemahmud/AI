@@ -37,10 +37,6 @@ sns.barplot(data=Glenco_data1, x= "Gender", y="Age")
 # a) compare age average by gender using bar plot
 plt.show()
 
-sns.barplot(data=Glenco_data1, x= "ID", y="Age", hue='Gender')
-# Details info by ID
-plt.show()
-
 sns.barplot(data=Glenco_data1, x= "Department", y="Age")
 # b) compare age average by department using bar plot
 plt.show()
@@ -77,7 +73,13 @@ plt.show()
 
 ###############################################
 
-#Personal Experiment . Not Part of assignment
+#Personal Experiment . Not Part of assignmentssssss
+ 
+# 5. Analyze Age data
+
+sns.barplot(data=Glenco_data1, x= "ID", y="Age", hue='Gender')
+# Details info by ID
+plt.show()
 
 sns.barplot(data=Glenco_data1, x= "ID", y="Age", hue='Department')
 # Details info by ID
