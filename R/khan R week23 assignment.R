@@ -32,19 +32,11 @@ g = ggplot(Glenco_data1, aes(x = Gender, y = Age))
 g = g + geom_bar(stat = "identity")
 plot(g) #Average Age
 
-g = ggplot(Glenco_data1, aes(x = ID, y = Age, fill = Gender))
-g = g + geom_bar(stat = "identity")
-plot(g) #Details by ID
-
 # b) compare age average by department using bar plot
 
 g = ggplot(Glenco_data1, aes(x = Department, y = Age))
 g = g + geom_bar(stat = "identity")
 plot(g) #Average Age
-
-g = ggplot(Glenco_data1, aes(x = ID, y = Age, fill = Department))
-g = g + geom_bar(stat = "identity")
-plot(g) #Details by ID
 
 # c) check age distribution for all using histogram
 g = ggplot(Glenco_data1, aes(x = Age))
@@ -80,3 +72,19 @@ g = ggplot(Glenco_data1, aes(x = Tenure, y = HourlyRate, fill = Gender))
 g = g + geom_smooth(method = 'lm') + geom_point(aes(color = Gender))
 plot(g)
 # end
+
+###############################################
+
+#Personal Experiment . Not Part of assignmentssssss
+
+# 5. Analyze Age data
+
+g = ggplot(Glenco_data1, aes(x = ID, y = Age, fill = Gender))
+g = g + geom_bar(stat = "identity")
+plot(g) #Details by ID
+
+g = ggplot(Glenco_data1, aes(x = ID, y = Age, fill = Department))
+g = g + geom_bar(stat = "identity")
+plot(g) #Details by ID
+
+################################################

@@ -45,10 +45,6 @@ sns.barplot(data=Glenco_data1, x= "Department", y="Age")
 # b) compare age average by department using bar plot
 plt.show()
 
-sns.barplot(data=Glenco_data1, x= "ID", y="Age", hue='Department')
-# Details info by ID
-plt.show()
-
 sns.displot(data=Glenco_data1, x= "Age", kde=True)
 # c) check age distribution for all using hisotgram
 plt.show()
@@ -58,8 +54,6 @@ sns.displot(data=Glenco_data1, x= "Age", kde=True, hue='Gender')
 plt.show()
 
 # 6. Analyze Tenure data
-ax = sns.boxplot(data=Glenco_data1)
-plt.show()
 
 ax = sns.boxplot(y="Tenure",data=Glenco_data1, linewidth=2.5)
 # a) check Tenure variance for all using box plot
@@ -70,8 +64,6 @@ ax = sns.boxplot(y="Tenure", x="Gender",data=Glenco_data1, linewidth=2.5)
 plt.show()
 
 # 7. Analyze Tenure and Hourly rate correlation
-sns.lmplot(data=Glenco_data1)
-plt.show()
 
 sns.lmplot(x="Tenure", y="HourlyRate", data=Glenco_data1)
 # a) check correlation for all using scatter plot with regression line
@@ -82,4 +74,18 @@ sns.lmplot(x="Tenure", y="HourlyRate", hue="Gender", data=Glenco_data1)
 plt.show()
 
 # end
+
+###############################################
+
+#Personal Experiment . Not Part of assignment
+
+sns.barplot(data=Glenco_data1, x= "ID", y="Age", hue='Department')
+# Details info by ID
+plt.show()
+
+# 6. Analyze Tenure data
+ax = sns.boxplot(data=Glenco_data1)
+plt.show()
+
+################################################
  
