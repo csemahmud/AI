@@ -51,5 +51,5 @@ y=iris_data.iloc[:,0]   # get y data
 # 7) split x, y data into train and test data
 # test data 20%
 #
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.12)
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2)
 
