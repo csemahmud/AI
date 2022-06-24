@@ -1,5 +1,5 @@
 # PYR101 week 4 task assignment
-# @author: Student Name
+# @author: SKHAN MAHMUDUL HASAN
 # PYR101 week 4 task assignment
 # this task will provide a basic training to do data preparation
 # for machine learning input
@@ -67,8 +67,8 @@ ggpairs(iris_data,aes_string(colour="SPECIES", alpha=0.5))
 trainIndex = createDataPartition(iris_data$SPECIES, p = .80,
                                  list = FALSE,
                                  times = 1)
-datatrain = x_iris_data[ trainIndex,]
-datatest = x_iris_data[-trainIndex,]
+datatrain = iris_data[ trainIndex,]
+datatest = iris_data[-trainIndex,]
 
 
 
