@@ -15,6 +15,9 @@ regression by using sliding window
 import pandas as pd
 
 toyota_stock_data = pd.read_csv('toyota_stock.csv', encoding="utf-8")
+# reorder data from old to new date
+toyota_stock_data = toyota_stock_data.sort_index(axis=0, ascending=False)
+#
 print(toyota_stock_data)
 print(toyota_stock_data.info())
 

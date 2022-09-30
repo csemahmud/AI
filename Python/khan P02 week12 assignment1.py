@@ -58,6 +58,34 @@ missing_data.head(5)
 sns.pairplot(titanic_kaggle_data, hue="Survived")
 plt.show()
 
+# Useful graphs for analysis
+# ploting for overall analysis
+sns.pairplot(titanic_kaggle_data, hue='Survived')
+#
+# Plot histograms/bar plot for each feature and showing Survived
+sns.displot(titanic_kaggle_data, x='Pclass', hue='Survived', multiple='dodge')  
+# 
+sns.displot(titanic_kaggle_data, x='Sex', hue='Survived', multiple='dodge')     
+# 
+sns.displot(titanic_kaggle_data, x='Age', hue='Survived', multiple='dodge') 
+# 
+sns.displot(titanic_kaggle_data, x='SibSp', hue='Survived', multiple='dodge')   
+# 
+sns.displot(titanic_kaggle_data, x='Parch', hue='Survived', multiple='dodge')   
+#
+sns.displot(titanic_kaggle_data, x='Fare', hue='Survived', multiple='dodge', bins=8)    
+#
+sns.displot(titanic_kaggle_data, x='Survived', hue='Cabin', multiple='dodge')    
+#
+sns.displot(titanic_kaggle_data, x='Survived', hue='Embarked', multiple='dodge') 
+#  
+# extra graph
+plt.figure(figsize=(8,5))
+sns.boxplot(x='Pclass',y='Age',data=titanic_kaggle_data, palette='rainbow', hue='Survived')
+plt.title("Age by Passenger Class, Titanic")
+sns.boxplot(x='Pclass',y='Age',data=titanic_kaggle_data, hue='Sex') 
+#
+
 """
 
 4) By keeping total observation numbers, decide how to
@@ -78,6 +106,52 @@ titanic_kaggle_data1.describe()
 5) Convert categorical data to numeric data
 
 """    
+
+"""
+
+#
+# Convert categorical data to numeric data
+    # Note: convert 'Embarked' and 'Sex' to dummy variables, also for 'Pclass'
+data1 = pd.get_dummies(titanic_kaggle_data, columns=['Pclass','Embarked','Sex'])
+#
+# calculate average age per Sex and Pclass
+meanvalue = data1.groupby(['Pclass', 'Sex'])['Age'].transform('mean')
+
+Here the following error occurs :
+    data1 = pd.get_dummies(titanic_kaggle_data, columns=['Pclass','Embarked','Sex'])
+    #
+    # calculate average age per Sex and Pclass
+    meanvalue = data1.groupby(['Pclass', 'Sex'])['Age'].transform('mean')
+    Traceback (most recent call last):
+
+      File "/tmp/ipykernel_2524453/1610192227.py", line 4, in <module>
+        meanvalue = data1.groupby(['Pclass', 'Sex'])['Age'].transform('mean')
+
+      File "/root/anaconda3/lib/python3.9/site-packages/pandas/core/frame.py", line 7712, in groupby
+        return DataFrameGroupBy(
+
+      File "/root/anaconda3/lib/python3.9/site-packages/pandas/core/groupby/groupby.py", line 882, in __init__
+        grouper, exclusions, obj = get_grouper(
+
+      File "/root/anaconda3/lib/python3.9/site-packages/pandas/core/groupby/grouper.py", line 882, in get_grouper
+        raise KeyError(gpr)
+
+    KeyError: 'Pclass'
+
+data1['Age'] = data1['Age'].fillna(meanvalue)
+#
+# Filling randomly selected ports in NAN
+freq_c = data1[data1['Embarked'] =='C'].Embarked.count() / data1.Embarked.count()
+freq_s = data1[data1['Embarked'] =='S'].Embarked.count() / data1.Embarked.count()
+freq_q = data1[data1['Embarked'] =='Q'].Embarked.count() / data1.Embarked.count()
+
+portlist = ['C', 'S', 'Q']
+problist = [freq_c, freq_s, freq_q]
+# randomly choose based on ports with probability
+data1['Embarked'] = data1['Embarked'].fillna(pd.Series(np.random.choice(portlist,p=problist,replace=True,size=len(data1.index))))
+
+"""
+
 # define replace value map
 replace_map = {'Sex': {'male': 0, 'female': 1},
                'Embarked': {'C': 0, 'Q': 1, 'S': 2}}
@@ -95,11 +169,13 @@ print(titanic_kaggle_data1.info())
 6) Drop unnecesary columns if any
 
 """
-#Dropping Cabin
+#Dropping "Cabin",'PassengerId','Name','Ticket'
 
-titanic_kaggle_data = titanic_kaggle_data.drop(columns=["Cabin"]);
+titanic_kaggle_data = titanic_kaggle_data.drop(columns=["Cabin",'PassengerId','Name','Ticket']);
 print(titanic_kaggle_data)
 print(titanic_kaggle_data.info())
+
+# drop non required columns
 
 """
     
