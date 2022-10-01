@@ -107,50 +107,28 @@ titanic_kaggle_data1.describe()
 
 """    
 
-"""
-
 #
 # Convert categorical data to numeric data
     # Note: convert 'Embarked' and 'Sex' to dummy variables, also for 'Pclass'
-data1 = pd.get_dummies(titanic_kaggle_data, columns=['Pclass','Embarked','Sex'])
+dummies_data = pd.get_dummies(titanic_kaggle_data, columns=['Pclass','Embarked','Sex'])
 #
 # calculate average age per Sex and Pclass
-meanvalue = data1.groupby(['Pclass', 'Sex'])['Age'].transform('mean')
+meanvalue = titanic_kaggle_data.groupby(['Pclass', 'Sex'])['Age'].transform('mean')
 
-Here the following error occurs :
-    data1 = pd.get_dummies(titanic_kaggle_data, columns=['Pclass','Embarked','Sex'])
-    #
-    # calculate average age per Sex and Pclass
-    meanvalue = data1.groupby(['Pclass', 'Sex'])['Age'].transform('mean')
-    Traceback (most recent call last):
-
-      File "/tmp/ipykernel_2524453/1610192227.py", line 4, in <module>
-        meanvalue = data1.groupby(['Pclass', 'Sex'])['Age'].transform('mean')
-
-      File "/root/anaconda3/lib/python3.9/site-packages/pandas/core/frame.py", line 7712, in groupby
-        return DataFrameGroupBy(
-
-      File "/root/anaconda3/lib/python3.9/site-packages/pandas/core/groupby/groupby.py", line 882, in __init__
-        grouper, exclusions, obj = get_grouper(
-
-      File "/root/anaconda3/lib/python3.9/site-packages/pandas/core/groupby/grouper.py", line 882, in get_grouper
-        raise KeyError(gpr)
-
-    KeyError: 'Pclass'
-
-data1['Age'] = data1['Age'].fillna(meanvalue)
+titanic_kaggle_data['Age'] = titanic_kaggle_data['Age'].fillna(meanvalue)
 #
 # Filling randomly selected ports in NAN
-freq_c = data1[data1['Embarked'] =='C'].Embarked.count() / data1.Embarked.count()
-freq_s = data1[data1['Embarked'] =='S'].Embarked.count() / data1.Embarked.count()
-freq_q = data1[data1['Embarked'] =='Q'].Embarked.count() / data1.Embarked.count()
+freq_c = titanic_kaggle_data[titanic_kaggle_data['Embarked'] =='C'].Embarked.count() / titanic_kaggle_data.Embarked.count()
+freq_s = titanic_kaggle_data[titanic_kaggle_data['Embarked'] =='S'].Embarked.count() / titanic_kaggle_data.Embarked.count()
+freq_q = titanic_kaggle_data[titanic_kaggle_data['Embarked'] =='Q'].Embarked.count() / titanic_kaggle_data.Embarked.count()
 
 portlist = ['C', 'S', 'Q']
 problist = [freq_c, freq_s, freq_q]
 # randomly choose based on ports with probability
-data1['Embarked'] = data1['Embarked'].fillna(pd.Series(np.random.choice(portlist,p=problist,replace=True,size=len(data1.index))))
+titanic_kaggle_data['Embarked'] = titanic_kaggle_data['Embarked'].fillna(pd.Series(np.random.choice(portlist,p=problist,replace=True,size=len(titanic_kaggle_data.index))))
 
-"""
+print(titanic_kaggle_data["Sex"], titanic_kaggle_data["Embarked"])
+print(titanic_kaggle_data.info())
 
 # define replace value map
 replace_map = {'Sex': {'male': 0, 'female': 1},
@@ -182,6 +160,9 @@ print(titanic_kaggle_data.info())
 7) Divide data into x data and y data (survived)
 
 """
+
+# Without Cabin
+
 #
 titanic_kaggle_data=titanic_kaggle_data.dropna()  # drop NaN in dataframe 
 titanic_kaggle_data=titanic_kaggle_data.reset_index(drop=True) # reorder index
@@ -194,9 +175,7 @@ titanic_kaggle_data["Survived"]=titanic_kaggle_data["Survived"].astype(str)  # c
 print(titanic_kaggle_data)
 print(titanic_kaggle_data.info())
 
-# Without Cabin
-
-x=titanic_kaggle_data.iloc[:,[0,2,3,4,5,6,7,8,9,10]]  # one way to drop Survived
+x=titanic_kaggle_data.iloc[:,[0,2,3,4,5,6,7]]  # one way to drop Survived
 y=titanic_kaggle_data.iloc[:,1]   # get y data
 
 # With Cabin
