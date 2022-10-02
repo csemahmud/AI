@@ -1,0 +1,2 @@
+export PATH="/root/anaconda3/bin:$PATH"
+jupyter lab
