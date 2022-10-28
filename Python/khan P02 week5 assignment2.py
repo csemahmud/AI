@@ -35,9 +35,49 @@ PYR102 week5 assignment uses Boston House Price.csv data for PCA study.
     and select quantity independent variables only
     
 """
+
+# New PYR102 PCA and regession study
+# Apply  PCA model for understanding variavle contribution
+# to principal components
+# Library set-up
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import random as rnd
+import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
+from sklearn import preprocessing  # get standardize program
+import warnings
+warnings.simplefilter('ignore')
+
+
+from sklearn import linear_model
+from sklearn.metrics import r2_score
+#import pandas as pd
+#from sklearn.decomposition import PCA
+#from sklearn import preprocessing  # get standardize program
+from sklearn.model_selection import KFold
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import train_test_split # split data into train and test data
+
+
+# 1) read data from working directory (diabetes data) 
+boston_data=pd.read_csv("Boston House Price.csv")  # get original data
+
+# 2) standardize x data before PCA apply
+boston_data1=boston_data.iloc[:,0:12]  # select quantity variable only
+boston_data1s=preprocessing.scale(boston_data1) # standardize train data
+
 """
     
  2) Perform correlation analysis among independent variables
+    
+"""
+
+
+
+""" 
+
  3) Execute PCA function and get the following result data
     a) relationship data between variables and PCs
        and visualize them
@@ -46,6 +86,12 @@ PYR102 week5 assignment uses Boston House Price.csv data for PCA study.
        - Variables and PCS relationship
        - Variable contribution to PCs
        - Variable cos2 distribution to PCs 
+
+"""
+
+
+
+"""
 
  4) Save PC scores with data in working directory for applying to regression
 # Perfrom regression using PCA result

@@ -23,6 +23,8 @@ PYR102 week5 assignment uses wine.csv data for PCA study.
 # to principal components
 # Library set-up
 import pandas as pd
+import numpy as np
+import seaborn as sns
 import random as rnd
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
@@ -44,7 +46,6 @@ from sklearn.model_selection import train_test_split # split data into train and
 # 1) read data from working directory (diabetes data) 
 wine_data=pd.read_csv("wine.csv")  # get original data
 # visualize covariate relationship
-import seaborn as sns
 wine_data["V1"].astype(str)  # change to character numbers
 xlist=wine_data.columns.to_list()[1:]  # get only quantity variable labels
 sns.pairplot(wine_data, hue="V1", vars=xlist)   # plot by V1
@@ -137,6 +138,11 @@ plt.ylabel("factor 2 (pc2)")
 plt.grid(True)
 plt.show()
 # end
+
+#Heatmap
+np.random.seed(0)
+uniform_data = np.random.rand(10, 12)
+ax = sns.heatmap(uniform_data)
 
 """
 
