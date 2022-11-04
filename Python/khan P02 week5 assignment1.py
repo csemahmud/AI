@@ -23,7 +23,7 @@ PYR102 week5 assignment uses wine.csv data for PCA study.
 # to principal components
 # Library set-up
 import pandas as pd
-import numpy as np
+#import numpy as np
 import seaborn as sns
 import random as rnd
 import matplotlib.pyplot as plt
@@ -94,6 +94,7 @@ print('explained variance ratio %')
 print(pca.explained_variance_ratio_) # eigenvalue accumurative %
 print('accumurative eigenvalue ratio')
 print(pca.explained_variance_ratio_.cumsum())  # print accumurative %
+
 # plot heat map to analyze variable contribution to PCs
 v=pca.components_   # get PC components
 fig, ax = plt.subplots(figsize=(8, 8))
@@ -110,6 +111,7 @@ sns.heatmap(v,
 ax.set_ylim(len(v), 0)  # adjust y axes limits
 plt.title("Variable contribution to PCs")
 plt.show()
+
 # get factor loading graph
 plt.figure(figsize=(10,10))
 plt.rcParams["font.size"] = 15
@@ -138,11 +140,6 @@ plt.ylabel("factor 2 (pc2)")
 plt.grid(True)
 plt.show()
 # end
-
-#Heatmap
-np.random.seed(0)
-uniform_data = np.random.rand(10, 12)
-ax = sns.heatmap(uniform_data)
 
 """
 
@@ -205,12 +202,12 @@ print(scores)
 regr.fit(x_train, y_train)
 
 # 7) Make predictions using the testing set
-diabetes_y_pred = regr.predict(x_test)
+wine_y_pred = regr.predict(x_test)
 #
 # Explained variance score: 1 is perfect prediction
-print('Variance score: \n', r2_score(y_test, diabetes_y_pred))
+print('Variance score: \n', r2_score(y_test, wine_y_pred))
 # check prediction result
-diff=abs(diabetes_y_pred-y_test)  # get absolute difference
+diff=abs(wine_y_pred-y_test)  # get absolute difference
 print("average deviation=",sum(diff)/len(diff))  # average of differences
 print("max deviation=",max(diff))  # max difference
 # end

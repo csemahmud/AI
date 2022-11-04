@@ -19,10 +19,10 @@ assignment.
 from sklearn.linear_model import LinearRegression
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn import linear_model
+#from sklearn import linear_model
 from sklearn.metrics import r2_score
 from sklearn.svm import SVR
-from sklearn.model_selection import train_test_split # split data into train and test data
+#from sklearn.model_selection import train_test_split # split data into train and test data
 import numpy as np
 
 """
@@ -135,6 +135,7 @@ diff_rfr=abs(pre_y_rfr-test_y)  # get absolute difference
 print("average deviation=",sum(diff_rfr)/len(diff_rfr))  # average of differences
 print("max deviation=",max(diff_rfr))  # max difference
 
+train_x = pd.DataFrame(train_x)
 importances = pd.DataFrame({'feature':train_x.columns,'importance':np.round(rfr.feature_importances_,3)})
 importances = importances.sort_values('importance',ascending=False).set_index('feature')
 importances.head(15)

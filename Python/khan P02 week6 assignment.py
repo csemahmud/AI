@@ -16,13 +16,22 @@ Created on Thu Jan 30 15:13:31 2020
 """
 
 import pandas as pd
+#import numpy as np
 from sklearn.cluster import KMeans
-import numpy as np
-from sklearn.decomposition import PCA
+#from sklearn.decomposition import PCA
 from sklearn.model_selection import train_test_split # split data into train and test data
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-from sklearn.metrics import accuracy_score
-import matplotlib.pyplot as plt
+#from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+#from sklearn.metrics import accuracy_score
+from sklearn.linear_model import LogisticRegression
+#import matplotlib.pyplot as pl
+#import pandas as pd
+#from sklearn.cluster import KMeans
+#import numpy as np
+#from sklearn.decomposition import PCA
+#from sklearn.model_selection import train_test_split # split data into train and test data
+#from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+#from sklearn.metrics import accuracy_score
+#import matplotlib.pyplot as plt
 
 """
  
@@ -101,21 +110,25 @@ sns.pairplot(diabetes_data1, hue="classid", vars=xlist)   # plot by SPECIES
 
 """
 
-
+ssize = len(diabetes_data)
+diabetes_data_shuffle = diabetes_data.sample(ssize,replace = False)
 
 """
 
  6) divide data into learning data and test data
 #    Learning data size 80%, test data size 20%
 
-"""
-
-
-
-"""
-
  7) now separate x data and y data for learning and test data
     For x data, both categorical and quantity data
+
+"""
+
+xdata=diabetes_data_shuffle.iloc[:,0:10]   # get x data except SPECIES
+pred_y=diabetes_data_shuffle.iloc[:,10:12]   # get y data
+x_train,x_test,y_train,y_test=train_test_split(xdata,pred_y,test_size=0.2)
+
+"""
+
  8) construct logistic regression classification model using lerning data
     the function for logistic regression classification is;
  construct logistic regression classification model
@@ -124,12 +137,34 @@ sns.pairplot(diabetes_data1, hue="classid", vars=xlist)   # plot by SPECIES
 
  logit.fit(x_train, y_train)  # set learning x and y data
 
+"""
+
+
+logit=LogisticRegression(random_state=0, solver='lbfgs',
+                         multi_class='multinomial',max_iter=10000)
+
+logit.fit(x_train, y_train["classid"])  # set learning x and y data
+
+"""
+
  9) apply the model created for prediction under test data
  pred=logit.predict(x_test)  # set test data 
+
+"""
+
+diabetes_y_pred=logit.predict(x_test)  # set test data 
+
+"""
 
  10) evaluate the prediction result;
      - difference between predicted value and target value
      - get prediction accuracy %
 # end  
 """
+
+# check prediction result
+diff=abs(diabetes_y_pred-y_test["classid"])  # get absolute difference
+print("average deviation=",sum(diff)/len(diff))  # average of differences
+print("max deviation=",max(diff))  # max difference
+# end
 
