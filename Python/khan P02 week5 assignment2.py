@@ -65,7 +65,7 @@ from sklearn.model_selection import train_test_split # split data into train and
 boston_data=pd.read_csv("Boston House Price.csv")  # get original data
 
 # 2) standardize x data before PCA apply
-boston_data1=boston_data.iloc[:,0:12]  # select quantity variable only
+boston_data1=boston_data.iloc[:,1:12]  # select quantity variable only
 boston_data1s=preprocessing.scale(boston_data1) # standardize train data
 
 """
@@ -178,7 +178,7 @@ plt.show()
 presult=pd.DataFrame(presult) # redefine as dataframe
 # 4) Now, separate data into x data and y data
 xpc=presult.iloc[:,0:5] # get 5 pc variables for x data 
-y=boston_data.iloc[:,12:14]   # get y data
+y=boston_data["MEDV"]   # get y data
 # 5) now split x,y data into train and test data
 # test sample size 12%
 x_train,x_test,y_train,y_test=train_test_split(xpc,y,test_size=0.209)
@@ -216,10 +216,8 @@ boston_y_pred = regr.predict(x_test)
 print('Variance score: \n', r2_score(y_test, boston_y_pred))
 # check prediction result
 diff=abs(boston_y_pred-y_test)  # get absolute difference
-print("average deviation of CHAS=",sum(diff["CHAS"])/len(diff["CHAS"]))  # average of differences
-print("max deviation of CHAS=",max(diff["CHAS"]))  # max difference
-print("average deviation of RAD=",sum(diff["RAD"])/len(diff["RAD"]))  # average of differences
-print("max deviation of RAD=",max(diff["RAD"]))  # max difference
+print("average deviation=",sum(diff)/len(diff))  # average of differences
+print("max deviation=",max(diff))  # max difference
 # end
 
 """
@@ -239,7 +237,5 @@ print('Variance score: \n', r2_score(y_test, pre_y))
 # check prediction result
 print(pre_y-y_test)  # difference between prediction data and test data
 diff=abs(pre_y-y_test)  # get absolute difference
-print("average deviation of CHAS=",sum(diff["CHAS"])/len(diff["CHAS"]))  # average of differences
-print("max deviation of CHAS=",max(diff["CHAS"]))  # max difference
-print("average deviation of RAD=",sum(diff["RAD"])/len(diff["RAD"]))  # average of differences
-print("max deviation of RAD=",max(diff["RAD"]))  # max difference
+print("average deviation=",sum(diff)/len(diff))  # average of differences
+print("max deviation=",max(diff))  # max difference

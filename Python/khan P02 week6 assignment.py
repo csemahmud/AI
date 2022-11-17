@@ -124,7 +124,7 @@ diabetes_data_shuffle = diabetes_data.sample(ssize,replace = False)
 """
 
 xdata=diabetes_data_shuffle.iloc[:,0:10]   # get x data except SPECIES
-pred_y=diabetes_data_shuffle.iloc[:,10:12]   # get y data
+pred_y=diabetes_data_shuffle["classid"]   # get y data
 x_train,x_test,y_train,y_test=train_test_split(xdata,pred_y,test_size=0.2)
 
 """
@@ -143,7 +143,7 @@ x_train,x_test,y_train,y_test=train_test_split(xdata,pred_y,test_size=0.2)
 logit=LogisticRegression(random_state=0, solver='lbfgs',
                          multi_class='multinomial',max_iter=10000)
 
-logit.fit(x_train, y_train["classid"])  # set learning x and y data
+logit.fit(x_train, y_train)  # set learning x and y data
 
 """
 
@@ -163,7 +163,7 @@ diabetes_y_pred=logit.predict(x_test)  # set test data
 """
 
 # check prediction result
-diff=abs(diabetes_y_pred-y_test["classid"])  # get absolute difference
+diff=abs(diabetes_y_pred-y_test)  # get absolute difference
 print("average deviation=",sum(diff)/len(diff))  # average of differences
 print("max deviation=",max(diff))  # max difference
 # end
