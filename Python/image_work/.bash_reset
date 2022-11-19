@@ -1,0 +1,23 @@
+sudo echo before
+sudo echo fruits_out
+sudo ls -ltr fruits_out
+sudo echo grape
+sudo ls -ltr grape
+sudo echo lemon
+sudo ls -ltr lemon
+sudo echo strawberry
+sudo ls -ltr strawberry
+sudo rm fruits_out/*
+sudo rm fruits_out/data_resized/*
+sudo rmdir fruits_out/data_resized
+sudo cp -r backup/* .
+sudo chmod -R 777 *
+sudo echo after
+sudo echo fruits_out
+sudo ls -ltr fruits_out
+sudo echo grape
+sudo ls -ltr grape
+sudo echo lemon
+sudo ls -ltr lemon
+sudo echo strawberry
+sudo ls -ltr strawberry
