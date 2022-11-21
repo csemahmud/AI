@@ -26,7 +26,7 @@ path2 = './image_work/fruits_out/'   # define dir path for output
 i = 0
  
 for i, f in enumerate(files, 1):  # start from 1 numbering
-    fname = 'grape_' + str(i) + '.jpg'  # define renamed string
+    fname = 'grape_' + str(i).zfill(3) + '.jpg'  # define renamed string
     os.rename(f, path2 + fname)   # rename and numbering all
 #
 #
@@ -38,7 +38,7 @@ files = glob.glob(path1+'*')  # get jpg data
 path2 = './image_work/fruits_out/'   # define dir path for output
  
 for i, f in enumerate(files, j):  # start from 1 numbering
-    fname = 'lemon_' + str(i) + '.jpg'  # define renamed string
+    fname = 'lemon_' + str(i).zfill(3) + '.jpg'  # define renamed string
     os.rename(f, path2 + fname)   # rename and numbering all
 #
 #
@@ -50,7 +50,7 @@ files = glob.glob(path1+'*')  # get jpg data
 path2 = './image_work/fruits_out/'   # define dir path for output
  
 for i, f in enumerate(files, j):  # start from 1 numbering
-    fname = 'strawberry_' + str(i) + '.jpg'  # define renamed string
+    fname = 'strawberry_' + str(i).zfill(3) + '.jpg'  # define renamed string
     os.rename(f, path2 + fname)   # rename and numbering all
 #
 # get only image file name created
@@ -62,9 +62,15 @@ print(files_file)   # ['file1', 'file2.txt', 'file3.jpg']
 df_fruits = pd.DataFrame(files_file)  # list to dataframe
 # assign column name as image
 df_fruits.columns = ["image"]
+# Sort the original array permanently
+df_fruits.sort_values(by=["image"], inplace = True, ignore_index=True)
 #
 # add label column for fruits as 1
 df_fruits["label"] = 1
+# add label column for fruits as 2
+df_fruits.loc[300:600,"label"] = 2
+# add label column for fruits as 3
+df_fruits.loc[600:900,"label"] = 3
 
 """
 
