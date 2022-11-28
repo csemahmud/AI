@@ -65,12 +65,12 @@ df_fruits.columns = ["image"]
 # Sort the original array permanently
 df_fruits.sort_values(by=["image"], inplace = True, ignore_index=True)
 #
-# add label column for fruits as 1
-df_fruits["label"] = 1
-# add label column for fruits as 2
-df_fruits.loc[300:600,"label"] = 2
-# add label column for fruits as 3
-df_fruits.loc[600:900,"label"] = 3
+# add label column for grapes as 0
+df_fruits["label"] = 0
+# add label column for lemons as 1
+df_fruits.loc[300:600,"label"] = 1
+# add label column for strawberries as 2
+df_fruits.loc[600:900,"label"] = 2
 
 """
 
