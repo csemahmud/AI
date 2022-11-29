@@ -224,4 +224,53 @@ trainIndex1 = createDataPartition(titanic_kaggle_data1$Survived, p = .80,
 datatrain1 = titanic_kaggle_data1[ trainIndex1,]
 datatest1 = titanic_kaggle_data1[-trainIndex1,]
 
+# """
+# 3) analyze variable relationship and trend by using graphs;
+#  survived vs Pcalss, sex, age, sibsp, parch, fare,   
+#  cabin, and embarked
+# This time, we can get COLORFUL graph by Survived
+# """
+
+# d) compare Pcalss, sex, age, sibsp, parch, fare,   
+#  cabin, and embarked distribution by Survived using histogram
+g = ggplot(titanic_kaggle_data, aes(x = Pclass, fill = Survived))
+g = g + geom_density(aes(color = Survived, alpha = 0.2), show.legend = F)
+g = g + geom_histogram(stat = "count", position = "identity", alpha = 0.8)
+plot(g)
+
+g = ggplot(titanic_kaggle_data, aes(x = Sex, fill = Survived))
+g = g + geom_density(aes(color = Survived, alpha = 0.2), show.legend = F)
+g = g + geom_histogram(stat = "count", position = "identity", alpha = 0.8)
+plot(g)
+
+g = ggplot(titanic_kaggle_data, aes(x = Age, fill = Survived))
+g = g + geom_density(aes(color = Survived, alpha = 0.2), show.legend = F)
+g = g + geom_histogram(stat = "count", position = "identity", alpha = 0.8)
+plot(g)
+
+g = ggplot(titanic_kaggle_data, aes(x = SibSp, fill = Survived))
+g = g + geom_density(aes(color = Survived, alpha = 0.2), show.legend = F)
+g = g + geom_histogram(stat = "count", position = "identity", alpha = 0.8)
+plot(g)
+
+g = ggplot(titanic_kaggle_data, aes(x = Parch, fill = Survived))
+g = g + geom_density(aes(color = Survived, alpha = 0.2), show.legend = F)
+g = g + geom_histogram(stat = "count", position = "identity", alpha = 0.8)
+plot(g)
+
+g = ggplot(titanic_kaggle_data, aes(x = Fare, fill = Survived))
+g = g + geom_density(aes(color = Survived, alpha = 0.2), show.legend = F)
+g = g + geom_histogram(stat = "count", position = "identity", alpha = 0.8)
+plot(g)
+
+g = ggplot(titanic_kaggle_data, aes(x = Cabin, fill = Survived))
+g = g + geom_density(aes(color = Survived, alpha = 0.2), show.legend = F)
+g = g + geom_histogram(stat = "count", position = "identity", alpha = 0.8)
+plot(g)
+
+g = ggplot(titanic_kaggle_data, aes(x = Embarked, fill = Survived))
+g = g + geom_density(aes(color = Survived, alpha = 0.2), show.legend = F)
+g = g + geom_histogram(stat = "count", position = "identity", alpha = 0.8)
+plot(g)
+
 
