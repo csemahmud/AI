@@ -1,0 +1,3 @@
+[submodule "Python/webgl_vitereactts"]
+	path = Python/webgl_vitereactts
+	url = https://github.com/csemahmud/webgl_vitereactts.git
